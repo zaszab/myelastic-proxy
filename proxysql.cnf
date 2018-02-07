@@ -34,3 +34,15 @@ mysql_users:
         active = 1
         }
 )
+
+mysql_query_rules:
+(
+        {
+        rule_id=1
+        active=1
+        match_pattern="^SELECT"
+        destination_hostgroup=20
+        apply=1
+        }
+
+)
