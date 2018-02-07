@@ -1,0 +1,36 @@
+datadir="/var/lib/proxysql"
+
+admin_variables=
+{
+        admin_credentials="admin:admin"
+        mysql_ifaces="0.0.0.0:6032;/tmp/proxysql_admin.sock"
+}
+
+mysql_servers =
+(
+    {
+    address="[WRITE SERVER IP ADDRESS/HOSTNAME]"
+    port=3306
+    hostgroup=10
+    max_connections=1000
+    },
+    {
+    address="[READ SERVER IP ADDRESS/HOSTNAME]"
+    port=3306
+    hostgroup=20
+    max_connections=1000
+    }
+)
+
+# You have to create this mysql user on the RDS
+mysql_users:
+(
+        {
+        username = "myelastic"
+        password = "[password]"
+        default_hostgroup = 10
+        max_connections=1000
+        default_schema="information_schema"
+        active = 1
+        }
+)
